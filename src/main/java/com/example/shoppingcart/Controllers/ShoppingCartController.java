@@ -48,4 +48,12 @@ public class ShoppingCartController {
         cartService.removeProcuctFromCart(cartId, procuctId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    calculating the total price of the items in the cart
+    @GetMapping("/{cartId}/total")
+    public ResponseEntity<Double> getTotalPrice(@PathVariable Long cartId) {
+        double total = cartService.calculateTotalPrice(cartId);
+        return new ResponseEntity<>(total, HttpStatus.OK);
+    }
+
 }

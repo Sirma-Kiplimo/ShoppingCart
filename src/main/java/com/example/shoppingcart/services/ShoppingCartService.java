@@ -40,4 +40,9 @@ public class ShoppingCartService {
         cart.removeItem(product);
         cartRepository.save(cart);
     }
+
+    public double calculateTotalPrice(Long cartId) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cart not found"));
+        return cart.getProducts().stream().mapToDouble(item -> item.getPrice() * item.getQuantity()).sum();
+    }
 }
