@@ -34,4 +34,10 @@ public class ShoppingCartService {
         return new ArrayList<>(cart.getProducts());
     }
 
+    public void removeProcuctFromCart(Long cartId, Long procuctId) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cart not found"));
+        Product product = cart.getProducts().stream().filter(i -> i.getId().equals(procuctId)).findFirst().orElseThrow(() -> new RuntimeException("Item not found in cart"));
+        cart.removeItem(product);
+        cartRepository.save(cart);
+    }
 }
