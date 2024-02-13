@@ -1,13 +1,15 @@
 package com.example.shoppingcart.Controllers;
 
-import com.example.shoppingcart.Repositories.ShoppingCartRepository;
-import org.springframework.stereotype.Service;
+import com.example.shoppingcart.services.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public class ShoppingCartController {
-    private final ShoppingCartRepository cartRepository;
+    private final ShoppingCartService cartService;
 
-    public ShoppingCartController(ShoppingCartRepository cartRepository) {
-        this.cartRepository = cartRepository;
+    @Autowired
+    public ShoppingCartController(ShoppingCartService cartService) {
+        this.cartService = cartService;
     }
 }
